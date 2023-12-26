@@ -70,7 +70,7 @@ class LinkedList:
         current.next_node = new_node
         new_node.next_node = next_node
 
-    def remove(self, index):
+    def remove_by_index(self, index):
         if index == 0:
             self.head = self.head.next_node
             return
@@ -85,6 +85,24 @@ class LinkedList:
         post_position = position.next_node
 
         pre_position.next_node = post_position
+
+    def remove_by_data(self, data):
+        current = self.head
+        if current.data == data:
+            self.head = self.head.next_node
+            return
+
+        previous = None
+        next_node = None
+
+        while True:
+            if current.data != data:
+                previous = current
+                current = current.next_node
+                next_node = current.next_node
+
+            previous.next_node = next_node
+            return
 
     def __repr__(self) -> str:
         """
